@@ -1,4 +1,3 @@
-Markdown
 
 # ⭐ AfiaPass Contracts — The Soroban Truth Engine 🦀
 
