@@ -1,0 +1,1 @@
+/home/johdan/Desktop/TheTwoHorsemen/afiapass-contracts/target/wasm32-unknown-unknown/release/afiapass_splitter.wasm: /home/johdan/Desktop/TheTwoHorsemen/afiapass-contracts/contracts/afiapass_splitter/src/lib.rs
