@@ -2,9 +2,6 @@
 ### Repo 2: `afiapass-contracts`
 **The "Truth" — Soroban Smart Contracts**
 
-```markdown
-# ⭐ AfiaPass Contracts — The Soroban Truth Engine 🦀
-
 **AfiaPass Contracts** serve as the on-chain "Digital Law" for transit and logistics permits in Nigeria. Built on the **Stellar Soroban** smart contract platform, these Rust-based contracts enforce absolute mathematical transparency for automated revenue collection and distribution.
 
 When a payment is made (via the AfiaPass SDK), this contract ensures that NGNC (Naira stablecoins) are instantly and irreversibly split between Local Government Areas (LGAs), transport unions, and logistics operators (like **Drive-Thru Afia**) before any permit is cryptographically validated.
