@@ -1,52 +1,40 @@
 # ⭐ AfiaPass Contracts — The Soroban Truth Engine 🦀
 
-  **AfiaPass Contracts** serve as the on-chain "Digital Law" for transit and logistics permits in Nigeria. Built on the **Stellar Soroban** smart contract platform, these Rust-based contracts enforce absolute mathematical transparency for automated revenue collection and distribution.
+**AfiaPass Contracts** serve as the on-chain "Digital Law" for transit and logistics permits in Nigeria. Built on the **Stellar Soroban** smart contract platform, these Rust-based contracts enforce absolute mathematical transparency for automated revenue collection and distribution.
 
-  When a payment is made (via the AfiaPass SDK), this contract ensures that NGNC (Naira stablecoins) are instantly and irreversibly split between Local Government Areas (LGAs), transport unions, and logistics operators (like **Drive-Thru Afia**) before any permit is cryptographically validated.
+When a payment is made (via the AfiaPass SDK), this contract ensures that NGNC (Naira stablecoins) are instantly and irreversibly split between Local Government Areas (LGAs), transport unions, and logistics operators (like **Drive-Thru Afia**) before any permit is cryptographically validated.
 
-  ### 🔑 Quick Summary
+### 🔑 Quick Summary
 
-  | Property | Value |
-  | :--- | :--- |
-  | **Blockchain** | **Stellar Network** |
-  | **Execution Environment**| **Soroban (WASM)** |
-  | **Language** | **Rust** |
-  | **Primary Asset** | **NGNC / NGNT Stablecoins** |
-  | **Core Function** | Trustless Levy Splitting & Permit Minting |
-
-  ---
-
-  ### ⚖️ The "Digital Law" Features
-
-  #### 🧮 1. Precision Splitter Logic
-  * **Safe Math**: Utilizes absolute `i128` integer precision to handle Naira stablecoin fractional splits, completely eliminating floating-point errors or rounding attacks.
-  * **Atomic Routing**: Instantly routes 5% to the specific LGA treasury wallet, 5% to the Transport Union, and 90% to the Vendor. If one transfer fails, the entire transaction reverts.
-
-  #### 🎫 2. Immutable Permit Minting
-  * **Time-Bound Metadata**: Once the tax split succeeds, the contract logs a unique, timestamped `AFIAPASS` permit record directly to the ledger.
-  * **Double-Spend Prevention**: Enforces strictly monotonic sequence checks to ensure a rider cannot reuse a payment payload.
-
-  #### 🏛️ 3. On-Chain Auth & Registry
-  * **Wallet Whitelisting**: Maintains a verifiable, on-chain registry of authorized Government and Union wallet addresses to prevent funds from being routed to bad actors.
-  * **Multi-Sig Governance**: Administrative functions (like updating the tax percentage) require cryptographic signatures from multiple platform administrators.
+| Property | Value |
+| :--- | :--- |
+| **Blockchain** | **Stellar Network** |
+| **Execution Environment**| **Soroban (WASM)** |
+| **Language** | **Rust** |
+| **Primary Asset** | **NGNC / NGNT Stablecoins** |
+| **Core Function** | Trustless Levy Splitting & Permit Minting |
 
 ---
 
-### 🔄 Architecture Flow
+### ⚖️ The "Digital Law" Features
 
+#### 🧮 1. Precision Splitter Logic
+* **Safe Math**: Utilizes absolute `i128` integer precision to handle Naira stablecoin fractional splits, completely eliminating floating-point errors or rounding attacks.
+* **Atomic Routing**: Instantly routes 5% to the specific LGA treasury wallet, 5% to the Transport Union, and 90% to the Vendor. If one transfer fails, the entire transaction reverts.
 
+#### 🎫 2. Immutable Permit Minting
+* **Time-Bound Metadata**: Once the tax split succeeds, the contract logs a unique, timestamped `AFIAPASS` permit record directly to the ledger.
+* **Double-Spend Prevention**: Enforces strictly monotonic sequence checks to ensure a rider cannot reuse a payment payload.
 
-1. **Invoke**: Rider pays via the AfiaPass App/SDK.
-2. **Execute**: Soroban contract `issue_permit_and_split` function is called.
-3. **Split**: Contract calculates percentages and moves NGNC to configured sub-wallets.
-4. **Emit**: Contract emits a `PermitIssued` event.
-5. **Sign**: The Java SDK detects the success and signs the offline SEP-10 JWT.
+#### 🏛️ 3. On-Chain Auth & Registry
+* **Wallet Whitelisting**: Maintains a verifiable, on-chain registry of authorized Government and Union wallet addresses to prevent funds from being routed to bad actors.
+* **Multi-Sig Governance**: Administrative functions (like updating the tax percentage) require cryptographic signatures from multiple platform administrators.
 
 ---
 
 ### 📁 Project Structure
 
-This repository follows the official Soroban Rust workspace structure to allow for multiple contracts in the future (e.g., separate contracts for different states or logistics types).
+This repository follows the official Soroban Rust workspace structure to allow for multiple contracts in the future.
 
 ```text
 afiapass-contracts/
@@ -65,20 +53,20 @@ afiapass-contracts/
 Prerequisites
 You must have the Rust toolchain and the Stellar CLI installed.
 
-    Install Rust:
-    Bash
+1. Install Rust:
+Bash
 
-    curl --proto '=https' --tlsv1.2 -sSf [https://sh.rustup.rs](https://sh.rustup.rs) | sh
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-    Add the WASM target (Soroban runs strictly on WebAssembly):
-    Bash
+2. Add the WASM target (Soroban runs strictly on WebAssembly):
+Bash
 
-    rustup target add wasm32-unknown-unknown
+rustup target add wasm32-unknown-unknown
 
-    Install the Stellar CLI:
-    Bash
+3. Install the Stellar CLI:
+Bash
 
-    cargo install --locked stellar-cli --features opt
+cargo install --locked stellar-cli --features opt
 
 🧪 Building and Testing
 
